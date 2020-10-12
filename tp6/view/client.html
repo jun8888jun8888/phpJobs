@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>聊天服务器</title>
+    <style>
+        .list textarea {
+            height: 500px;
+            width: 700px;
+            border: none;
+            resize: none;
+            cursor: pointer;
+        }
+        .content textarea {
+            height: 100px;
+            width: 600px;
+        }
+        .send button {
+
+        }
+    </style>
 </head>
 <body>
-$END$
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.3/jquery.js"></script>
+<script type="text/javascript">
+
+    let id = Math.floor(Math.random() * 1000000);
+    let wx = new WebSocket("ws://49.234.21.155:9501/");
+    let sendInfo = ['connect',{"id":id}];
+    wx.onopen = function (){
+        wx.send(JSON.stringify(sendInfo));
+        console.log('连接中');
+    };
+    wx.onmessage = function (ret){
+        let info = ret.data;
+        console.log(info);
+        $("#list_show").val(info + "\n");
+    };
+    wx.onclose = function ()
+    {
+        //alert("关闭连接");
+        console.log("关闭连接");
+    }
+
+    function chat()
+    {
+        let show = $("show");
+        let sendInfo = {"state":"send","id":id,"content":show.val()};
+        wx.send(JSON.stringify(['test', {
+               to: "123",
+               aa: "222",
+            }]));
+        show.val("")
+    }
+
+
+</script>
+<div><h3>聊天服务器</h3></div>
+<div id="chat" >
+   <label  class="list">
+       <textarea placeholder="聊天列表" id="list_show">
+
+        </textarea>
+   </label>
+</div>
+<div>
+    <label class="content">
+        <textarea placeholder="请输入聊天内容,发送" id="show">
+        </textarea>
+    </label>
+    <label class="send">
+        <button type="button" onclick="chat()">发送</button>
+    </label>
+
+
+</div>
 </body>
 </html>

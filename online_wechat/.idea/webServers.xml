@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="f59ce524-0aee-4daa-b8d6-59103773d1e2" name="线上测试服务器">
-        <fileTransfer accessType="SFTP" host="49.234.21.155" port="22" sshConfigId="3b651603-1f34-4f41-a2ec-2e2176da3f49" sshConfig="root@49.234.21.155:22 key" keyPair="true">
+        <fileTransfer rootFolder="/data/web/wechat" accessType="SFTP" host="49.234.21.155" port="22" sshConfigId="3b651603-1f34-4f41-a2ec-2e2176da3f49" sshConfig="root@49.234.21.155:22 key" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
